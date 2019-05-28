@@ -30,7 +30,7 @@ public class BinaryTreeMain {
 		 * System.out.println("Leaf Nodes"); theTree.leafNodes(theTree.root);
 		 */
 		theTree.levelOrder(theTree.root);
-		System.out.println("Is Valid BST"+theTree.isValidBinaryTree(theTree.root, Integer.MAX_VALUE, Integer.MIN_VALUE));
+		System.out.println("Is Valid BST"+theTree.isValidBinaryTree(theTree.root, Integer.MIN_VALUE, Integer.MAX_VALUE));
 
 }
 

@@ -88,14 +88,14 @@ public class BinaryTree  extends BinaryTreeBase{
 		//return 0;
 	}
 	
-	public boolean isValidBinaryTree(Node root,int max,int min) {
+	public boolean isValidBinaryTree(Node root,int min,int max) {
 		if(root==null) {
 			return true;
 		}
-		if(root.key<min || root.key>max ) {
+		if(root.key<=min || root.key>=max ) {
 			return false;
 		}
 		return isValidBinaryTree(root.leftChild, min, root.key) 
-				&& isValidBinaryTree(root.leftChild, root.key, max);
+				&& isValidBinaryTree(root.rightChild, root.key, max);
 	}
 }
