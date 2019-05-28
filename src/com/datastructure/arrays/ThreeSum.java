@@ -6,46 +6,56 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ThreeSum {
-	private static List<List<Integer>> threeSum(int[] a,int target) {
-		Arrays.sort(a);
-	    ArrayList<List<Integer>> result = new ArrayList<>();
-	    
-	    for(int i=0;i<a.length;i++) {
-	    	int j=i+1;
-	    	int k=a.length-1;
-	    	if(j<a.length && a[j]==a[j-1]) {
-    			continue;
-    		}
-	    	//int sumTarget=target-a[i];
-	    	while(j<k) {
-	    		if(k<a.length && a[k]==a[k-1]) {
-	    			k--;
-	    			continue;
-	    		}
-	    		if(a[i]+a[j]+a[k]>target) {
-	    			k--;
-	    		}else if(a[i]+a[j]+a[k]<target) {
-	    			j++;
-	    		}else if(a[i]+a[j]+a[k]==0) {
-	    			ArrayList<Integer> l=new ArrayList<>();
-	    			l.add(a[i]);
-	    			l.add(a[j]);
-	    			l.add(a[k]);
-	    			result.add(l);
-	    			j++;
-	    			k--;
-	    			
-	    		}
-	    	}
+	private static List<List<Integer>> threeSum(int[] nums,int target) {
+		 List<List<Integer>> res = new ArrayList<>();
+			
+			if(nums.length <= 2) { return res;}
+			
+			//Sort the array
+			Arrays.sort(nums);
+			
+			int i = 0;
+			while(i < nums.length) {	
+				
+				int Lo = i + 1;
+				int Hi = nums.length - 1;
+				
+				while(Lo < Hi) {
+					int Sum = nums[i] + nums[Lo] + nums[Hi];
+					
+					if(Sum == 0) {
+						List<Integer> foundList = new ArrayList<Integer>();
+						foundList.add(nums[i]);
+						foundList.add(nums[Lo]);
+						foundList.add(nums[Hi]);
+						res.add(foundList);					
+					}
+					
+					if(Sum <= 0) {
+						Lo++;
+						while( Lo < Hi && nums[Lo] == nums[Lo -1]) {Lo++; }
+					}
+					else {
+						Hi--;
+						while(Lo < Hi && nums[Hi] == nums[Hi +1]) {Hi--; }
+					}
+				}
+				
+				i++;
+				while(i < nums.length && nums[i] == nums[i -1]) {
+					i++;
+				}
+				
+			}		
+			return res;	
 	    }
 		
 		
-		return result;
 	
-	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(threeSum(new int[] {-1,0,1,2,-1,-4},0));
+		System.out.println(threeSum(new int[] {-1, 0, 1, 2, -1, -4},0));
 
 	}
 
